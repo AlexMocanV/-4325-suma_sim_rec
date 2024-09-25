@@ -1,0 +1,32 @@
+#include <iostream>
+void citire(int &n,int v[])
+{
+    std::cin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        std::cin>>v[i];
+    }
+}
+bool gcd(int a,int b)
+{
+    if(b==0)return a==1;
+    
+    return gcd(b,a%b);
+}
+void suma_sim(int n, int v[],int st,int dr,int s)
+{
+    if(st>=dr){
+    std::cout<<s;return;
+    }
+    if(gcd(v[st],v[dr])){s+=v[st]+v[dr];}
+    
+    suma_sim(n,v,++st,--dr,s);
+}
+int main()
+{
+    int n,v[1001],s=0,st=1,dr;
+    citire(n,v);
+    dr=n;
+    suma_sim(n,v,st,dr,s);
+    return 0;
+}
